@@ -11,10 +11,10 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const NAV_LOGO = {
-  url: "https://www.shadcnblocks.com",
-  src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+  url: "https://bongkarbuatbangun.vercel.app/",
+  src: "/",
   alt: "logo",
-  title: "Shadcnblocks.com",
+  title: "BongkarBuatBangun",
 };
 
 const NAV_ITEMS = [
