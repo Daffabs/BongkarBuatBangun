@@ -6,6 +6,12 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type ServiceProps = {
   title: string;
@@ -32,12 +38,41 @@ const services: ServiceProps[] = [
 ];
 
 const Feat = () => {
+  useEffect(() => {
+    // Split teks di <q>
+    const split = new SplitType("#feat", {
+      types: "chars",
+      charClass: "split-chars", // kasih class khusus biar bisa override
+    });
+
+    gsap.fromTo(
+      split.chars,
+      { color: "#2B2A2A", opacity: 0.2 }, // awalnya gelap
+      {
+        color: "#FFF", // jadi terang
+        opacity: 1,
+        stagger: 0.05, // jeda antar huruf
+        scrollTrigger: {
+          trigger: "#feat",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true, // kalau scroll balik, huruf gelap lagi
+        },
+      }
+    );
+
+    return () => {
+      split.revert();
+    };
+  }, []);
   return (
-    <section className="py-0 sm:py-0 md:py-0 lg:py-20">
+    <section data-aos="fade-up" className="py-0 sm:py-0 md:py-0 lg:py-20">
       <div className="container grid grid-cols-1 gap-10 lg:grid-cols-3">
         <div className="flex flex-col justify-between lg:col-span-1">
           <div>
-            <h2 className="text-foreground mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-medium ">Layanan Kami</h2>
+            <h2 id="feat" className="text-foreground mb-4 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold ">
+              Yang BBB Tawarkan
+            </h2>
             <p className="text-muted-foreground w-72 text-base tracking-tight">Bikin proyek lebih mudah, momen lebih berkesan, dan teknologi lebih dekat dengan Anda.</p>
           </div>
           <Link href="/indexkarya">

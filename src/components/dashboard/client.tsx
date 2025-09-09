@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Client = () => {
   return (
-    <section className="py-16 sm:py-14 md:py-0 lg:py-0">
+    <section className="py-12 sm:py-14 md:py-0 lg:py-0" data-aos="fade-up">
       <div className="container flex flex-col items-center gap-8 sm:gap-12 md:gap-14 lg:gap-16 px-4 sm:px-8 md:px-12 lg:px-16">
         <div
           className="grid w-full 

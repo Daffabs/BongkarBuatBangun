@@ -10,10 +10,10 @@ import { Button } from "@/components/ui/button";
 const Kawan = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const images = Array(10).fill({ src: "/images/mari.png" });
+  const images = Array(10).fill({ src: "/images/MARI.png" });
 
   return (
-    <section className="h-full lg:h-screen overflow-hidden py-12 sm:py-0 md:py-0 lg:py-0 px-4 sm:px-6 md:px-10 lg:px-16">
+    <section data-aos="fade-up" className="h-full lg:h-screen overflow-hidden py-0 sm:py-0 md:py-0 lg:py-0 px-4 sm:px-6 md:px-10 lg:px-16">
       <div className="grid h-full w-full max-w-7xl grid-cols-2 overflow-hidden rounded-2xl bg-muted sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
         {/* Left Content */}
         <div className="relative flex flex-col justify-between p-6 sm:p-10 md:p-16">

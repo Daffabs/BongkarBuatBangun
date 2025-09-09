@@ -32,7 +32,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen text-white flex flex-col items-center justify-center py-8 sm:py-10 md:py-14 lg:py-0">
+    <div data-aos="fade-up" className="min-h-screen text-white flex flex-col items-center justify-center py-8 sm:py-10 md:py-14 lg:py-0">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12 lg:gap-12 w-full max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10">
         {/* Left Section */}
         <div className="flex flex-col justify-between bg-neutral-900 p-4 sm:p-6 md:p-8 rounded-2xl">

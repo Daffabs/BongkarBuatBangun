@@ -156,6 +156,6 @@ body {
 }
 
 .split-chars {
-  display: inline-block;
-  white-space: pre;
+  display: inline !important; /* jangan inline-block */
+  white-space: pre; /* biar spasi tetap utuh */
 }

@@ -7,6 +7,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -44,7 +50,34 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+const Testimonials = () => {
+  useEffect(() => {
+    // Split teks di <q>
+    const split = new SplitType("#testi", {
+      types: "chars",
+      charClass: "split-chars", // kasih class khusus biar bisa override
+    });
+
+    gsap.fromTo(
+      split.chars,
+      { color: "#2B2A2A", opacity: 0.2 }, // awalnya gelap
+      {
+        color: "#FFF", // jadi terang
+        opacity: 1,
+        stagger: 0.05, // jeda antar huruf
+        scrollTrigger: {
+          trigger: "#testi",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true, // kalau scroll balik, huruf gelap lagi
+        },
+      }
+    );
+
+    return () => {
+      split.revert();
+    };
+  }, []);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [
     Autoplay({
       delay: 4000, // ganti sesuai kecepatan (ms)
@@ -66,11 +99,11 @@ export default function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <section className="text-white  px-6 md:px-16  pb-14 py-0 sm:py-14 md:py-14 lg:py-20">
+    <section data-aos="fade-up" className="text-white  px-6 md:px-16  pb-14 py-12 sm:py-14 md:py-14 lg:py-20">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto items-center">
         {/* Left Side */}
         <div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4">
+          <h2 id="testi" className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold mb-4">
             Apa Kata <br /> Kawan <span className="text-logo-tosca">B</span>
             <span className="text-logo-biru">B</span>
             <span className="text-logo-gold">B</span>
@@ -126,4 +159,6 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
+};
+
+export default Testimonials;

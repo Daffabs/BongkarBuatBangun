@@ -6,8 +6,41 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+import { useEffect } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Service() {
+  useEffect(() => {
+    // Split teks di <q>
+    const split = new SplitType("#service", {
+      types: "chars",
+      charClass: "split-chars", // kasih class khusus biar bisa override
+    });
+
+    gsap.fromTo(
+      split.chars,
+      { color: "#2B2A2A", opacity: 0.2 }, // awalnya gelap
+      {
+        color: "#FFF", // jadi terang
+        opacity: 1,
+        stagger: 0.05, // jeda antar huruf
+        scrollTrigger: {
+          trigger: "#service",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true, // kalau scroll balik, huruf gelap lagi
+        },
+      }
+    );
+
+    return () => {
+      split.revert();
+    };
+  }, []);
   const articles = [
     {
       img: "/images/l1.png",
@@ -30,11 +63,11 @@ export default function Service() {
   ];
 
   return (
-    <main className=" text-white min-h-screen px-6 md:px-16 py-14 sm:py-14 md:py-16 lg:py-4">
+    <main data-aos="fade-up" className=" text-white min-h-screen px-6 md:px-16 py-14 sm:py-14 md:py-16 lg:py-4">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
         <div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+          <h2 id="service" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
             Yang <span className="text-logo-tosca">B</span>
             <span className="text-logo-biru">B</span>
             <span className="text-logo-gold">B</span> Tawarkan

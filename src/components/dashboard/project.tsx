@@ -9,8 +9,41 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
 import "swiper/css/effect-cards";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitType from "split-type";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Project = () => {
+  useEffect(() => {
+    // Split teks di <q>
+    const split = new SplitType("#project", {
+      types: "chars",
+      charClass: "split-chars", // kasih class khusus biar bisa override
+    });
+
+    gsap.fromTo(
+      split.chars,
+      { color: "#2B2A2A", opacity: 0.2 }, // awalnya gelap
+      {
+        color: "#FFF", // jadi terang
+        opacity: 1,
+        stagger: 0.05, // jeda antar huruf
+        scrollTrigger: {
+          trigger: "#project",
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true, // kalau scroll balik, huruf gelap lagi
+        },
+      }
+    );
+
+    return () => {
+      split.revert();
+    };
+  }, []);
+
   const images = [
     {
       src: "/images/mari5.png",
@@ -97,7 +130,7 @@ const Project = () => {
   }, []);
 
   return (
-    <section className="py-0 sm:py-0 md:py-0 lg:py-0">
+    <section data-aos="fade-up" className="py-0 sm:py-0 md:py-0 lg:py-0">
       <style>{css}</style>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* KIRI - Slider */}
@@ -142,7 +175,7 @@ const Project = () => {
 
         {/* KANAN - Text */}
         <div className="text-center md:text-left max-md:order-1">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl md:text-4xl font-extrabold mb-3 md:mb-4">
+          <h2 id="project" className="text-4xl sm:text-5xl lg:text-6xl md:text-4xl font-extrabold mb-3 md:mb-4">
             Kolaborasi Bersama <span className="text-logo-tosca">B</span>
             <span className="text-logo-biru">B</span>
             <span className="text-logo-gold">B</span>

@@ -51,7 +51,7 @@ const Cerita = ({
   },
 }: About3Props = {}) => {
   return (
-    <section className="py-0">
+    <section data-aos="fade-up" className="py-0">
       <div className="container">
         <div className="grid gap-7 lg:grid-cols-3">
           <img src={mainImage.src} alt={mainImage.alt} className="size-full max-h-[620px] rounded-xl object-cover lg:col-span-2" />

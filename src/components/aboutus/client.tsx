@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 const Client = () => {
   return (
-    <section className="py-10 sm:py-14 lg:py-12">
+    <section data-aos="fade-up" className="py-10 sm:py-14 lg:py-12">
       <div className="container flex flex-col items-center gap-8 sm:gap-12 lg:gap-16 px-4 sm:px-8 lg:px-16">
         <div
           className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 

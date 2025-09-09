@@ -64,7 +64,7 @@ export default function Tim() {
   ];
 
   return (
-    <main className="min-h-screen text-white px-6 md:px-1 lg:px-16 py-16 sm:py-10 md:py-16 lg:py-16">
+    <main data-aos="fade-up" className="min-h-screen text-white px-0 md:px-1 lg:px-16 py-0 sm:py-10 md:py-16 lg:py-16">
       <section className="max-w-6xl mx-auto">
         {/* --- DESKTOP (grid biasa) --- */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
