@@ -165,11 +165,11 @@ const MobileNav = () => {
                 )
               )}
             </Accordion>
-            <div className="flex flex-col gap-2 py-2">
+            {/* <div className="flex flex-col gap-2 py-2">
               <Button variant="secondary" className="px-3 text-xs">
                 Log in
               </Button>
-            </div>
+            </div> */}
           </div>
         </PopoverContent>
       </Popover>
